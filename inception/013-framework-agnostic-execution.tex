@@ -55,11 +55,12 @@
     \item \texttt{initialize(config)} --- Bootstrap the agent from pipeline YAML
     \item \texttt{execute(input, state)} --- Run the agent and return typed output
     \item \texttt{emit\_telemetry(span)} --- Report execution telemetry via OTLP
+    \item \texttt{status()} --- Return current agent state and metadata
   \end{enumerate}
   \vspace{-0.2cm}
   \begin{exampleblock}{}
     \fontsize{6}{7}\selectfont
-    Three methods. That is the entire surface area a framework needs to implement
+    Four methods. That is the entire surface area a framework needs to implement
     to join the OpenCollage ecosystem.
   \end{exampleblock}
 \end{frame}

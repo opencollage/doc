@@ -84,7 +84,7 @@
 
     \begin{block}{\fontsize{5.5}{6.5}\selectfont Novel Contribution}
       \fontsize{5.5}{6.5}\selectfont
-      A \textbf{minimal, universal adapter contract} (three methods) that any AI
+      A \textbf{minimal, universal adapter contract} (four methods) that any AI
       agent framework implements to become a first-class node in a shared
       orchestration DAG:
       \begin{enumerate}
@@ -94,6 +94,8 @@
               state checkpointing
         \item \texttt{emit\_telemetry(span)} --- report execution metrics via
               OpenTelemetry
+        \item \texttt{status()} --- return current agent state and metadata
+              for introspection
       \end{enumerate}
       The contract reduces $O(n^2)$ integrations to $O(n)$ adapters.
     \end{block}
@@ -133,10 +135,11 @@
         \node[rectangle, draw, dashed, orchblue, thick, rounded corners,
               text width=6.5cm, minimum height=1cm, font=\fontsize{5.5}{6.5}\selectfont,
               align=left, fill=white] at (3.5,0.3) {
-          \textbf{Adapter Contract (3 methods):}\\
+          \textbf{Adapter Contract (4 methods):}\\
           1. \texttt{initialize(AgentConfig) -> void}\\
           2. \texttt{execute(HandoffPayload, Checkpoint) -> ExecutionResult}\\
-          3. \texttt{emit\_telemetry(OTelSpan) -> void}
+          3. \texttt{emit\_telemetry(OTelSpan) -> void}\\
+          4. \texttt{status() -> AgentStatus}
         };
       \end{tikzpicture}
     \end{center}
