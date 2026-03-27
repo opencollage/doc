@@ -3,7 +3,7 @@
   \fontsize{5.5}{6.5}\selectfont
   \begin{block}{}
     \fontsize{5.5}{6.5}\selectfont
-    A framework adapter wraps a native agent to conform to the three-method
+    A framework adapter wraps a native agent to conform to the four-method
     OpenCollage contract. Below is a production-grade AutoGen adapter.
   \end{block}
 
@@ -13,8 +13,9 @@
     \begin{column}{0.52\textwidth}
       \begin{lstlisting}[style=pythonstyle,basicstyle=\ttfamily\fontsize{3.3}{4}\selectfont,title={\tiny\bfseries opencollage/adapters/autogen\_adapter.py}]
 from opencollage.sdk import (
-    AdapterBase, AgentConfig, HandoffPayload,
-    ExecutionResult, Checkpoint, SchemaRegistry
+    AdapterBase, AgentConfig, AgentStatus,
+    HandoffPayload, ExecutionResult,
+    Checkpoint, SchemaRegistry
 )
 from opencollage.telemetry import OTelEmitter
 from autogen import AssistantAgent, UserProxyAgent
@@ -87,21 +88,31 @@ class AutoGenAdapter(AdapterBase):
             span.add_event("tool_call",
                 {"tool": tc.name,
                  "duration_ms": tc.duration})
+
+    def status(self) -> AgentStatus:
+        return AgentStatus(
+            state=self._state,
+            agent_id=self._agent.name,
+            framework="autogen",
+            model=self._agent.model,
+            last_run=self._last_run,
+            resources={"proxy": bool(self._proxy)},
+        )
       \end{lstlisting}
     \end{column}
   \end{columns}
 \end{frame}
 
-\begin{frame}[fragile]{Adapter Contract: The Three-Method Interface}
+\begin{frame}[fragile]{Adapter Contract: The Four-Method Interface}
   \scriptsize
   \begin{center}
     \begin{tikzpicture}[scale=0.6, transform shape,
         method/.style={rectangle, draw, thick, rounded corners, fill=orchgreen!15,
-                       text width=3.2cm, text centered, minimum height=1.8cm, font=\tiny\bfseries},
+                       text width=2.8cm, text centered, minimum height=1.8cm, font=\tiny\bfseries},
         runtime/.style={rectangle, draw, very thick, rounded corners, fill=orchblue!10,
-                        text width=11cm, text centered, minimum height=0.8cm, font=\scriptsize\bfseries}]
+                        text width=13cm, text centered, minimum height=0.8cm, font=\scriptsize\bfseries}]
 
-      \node[runtime] (rt) at (5,3) {\faCogs\ \ OpenCollage Runtime};
+      \node[runtime] (rt) at (6,3) {\faCogs\ \ OpenCollage Runtime};
 
       \node[method] (m1) at (0,0) {
         \texttt{initialize(config)}\\[4pt]
@@ -111,7 +122,7 @@ class AutoGenAdapter(AdapterBase):
         Connect to schema registry\\
         Return: \texttt{void}
       };
-      \node[method] (m2) at (5,0) {
+      \node[method] (m2) at (4,0) {
         \texttt{execute(input, ckpt)}\\[4pt]
         \normalfont\tiny
         Receive typed HandoffPayload\\
@@ -119,7 +130,7 @@ class AutoGenAdapter(AdapterBase):
         Validate output vs schema\\
         Return: \texttt{ExecutionResult}
       };
-      \node[method] (m3) at (10,0) {
+      \node[method] (m3) at (8,0) {
         \texttt{emit\_telemetry(span)}\\[4pt]
         \normalfont\tiny
         Report tokens, latency, cost\\
@@ -127,13 +138,22 @@ class AutoGenAdapter(AdapterBase):
         Propagate trace context\\
         Return: \texttt{void}
       };
+      \node[method] (m4) at (12,0) {
+        \texttt{status()}\\[4pt]
+        \normalfont\tiny
+        Return agent state (idle,\\
+        running, error, draining)\\
+        Expose resource usage\\
+        Return: \texttt{AgentStatus}
+      };
 
       \draw[->, thick, orchblue] (rt.south -| m1) -- (m1);
-      \draw[->, thick, orchblue] (rt.south) -- (m2);
+      \draw[->, thick, orchblue] (rt.south -| m2) -- (m2);
       \draw[->, thick, orchblue] (rt.south -| m3) -- (m3);
+      \draw[->, thick, orchblue] (rt.south -| m4) -- (m4);
 
-      \node[font=\tiny\bfseries, orchgray] at (5,-1.6) {
-        Every adapter---AutoGen, CrewAI, LangGraph, custom---implements exactly these three methods.
+      \node[font=\tiny\bfseries, orchgray] at (6,-1.6) {
+        Every adapter---AutoGen, CrewAI, LangGraph, custom---implements exactly these four methods.
       };
     \end{tikzpicture}
   \end{center}
@@ -149,6 +169,7 @@ class AutoGenAdapter(AdapterBase):
           \item \texttt{initialize} called exactly once at pipeline startup
           \item \texttt{execute} may be called multiple times (retries)
           \item \texttt{emit\_telemetry} called within \texttt{execute}'s span context
+          \item \texttt{status} callable at any time (thread-safe); returns current agent state
           \item Adapter is stateless between \texttt{execute} calls---state lives in checkpoints
         \end{enumerate}
       \end{exampleblock}
@@ -159,7 +180,7 @@ class AutoGenAdapter(AdapterBase):
         \begin{itemize}
           \setlength{\itemsep}{0pt}
           \item \texttt{o9e conformance test autogen-adapter}
-          \item Validates: schema compliance, telemetry emission, error propagation, idempotent retries
+          \item Validates: schema compliance, telemetry emission, status reporting, error propagation, idempotent retries
           \item Adapters must pass conformance to be listed in the OpenCollage registry
         \end{itemize}
       \end{alertblock}
