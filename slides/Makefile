@@ -1,4 +1,4 @@
-SUBDIRS=slides
+SUBDIRS=inception
 
 all:
 	@for dir in $(SUBDIRS); do \
