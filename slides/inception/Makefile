@@ -9,10 +9,10 @@ $(PROGRAM).pdf:
 	$(LATEXTOPDF) 000-opencollage.tex
 	$(MV) 000-opencollage.pdf $(PROGRAM).pdf
 clean:
-	rm -frv *.aux *.nav *.out *.toc *.log *.snm *.vrb *~
+	rm -frv *.aux *.nav *.out *.toc *.log *.snm *.vrb *.xdv *~
 clobber:
-	rm -frv *.aux *.nav *.out *.toc *.pdf *.log *.snm *.vrb *~
+	rm -frv *.aux *.nav *.out *.toc *.pdf *.log *.snm *.vrb *.xdv *~
 test:
-	@-true
+	$(LATEXTOPDF) -no-pdf 000-opencollage.tex
 
 .PHONY: all $(PROGRAM).pdf clean clobber test
