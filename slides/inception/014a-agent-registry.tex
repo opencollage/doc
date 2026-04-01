@@ -16,8 +16,8 @@
     \begin{tikzpicture}[scale=0.58, transform shape]
 
       %% ---- Section titles ----
-      \node[font=\fontsize{7}{8}\selectfont\bfseries, orchblue] at (3.5,7.2) {Container World};
-      \node[font=\fontsize{7}{8}\selectfont\bfseries, orchgreen!80!black] at (11.5,7.2) {Agent World (OpenCollage)};
+      \node[font=\fontsize{7}{8}\selectfont\bfseries, orchblue] at (3.0,7.2) {Container World};
+      \node[font=\fontsize{7}{8}\selectfont\bfseries, orchgreen!80!black] at (12.0,7.2) {Agent World (OpenCollage)};
 
       %% ---- Divider ----
       \draw[very thick, orchgray!30] (7.5,0) -- (7.5,6.8);
@@ -30,12 +30,12 @@
                      font=\fontsize{4.5}{5.5}\selectfont, text centered}
       }
 
-      \node[cbox, font=\fontsize{4.5}{5.5}\selectfont\bfseries] (creg) at (3.5,6) {\faIcon{database}\ Quay.io / Docker Hub};
-      \node[cbox] (cimg) at (1.2,4.2) {\faIcon{cube}\ Container Image\\OCI format};
-      \node[cbox] (ctag) at (5.8,4.2) {\faIcon{tag}\ Tags \& Digests\\Versioning};
-      \node[cbox] (csig) at (1.2,2.4) {\faIcon{lock}\ Sigstore / cosign\\Image signing};
-      \node[cbox] (ccli) at (5.8,2.4) {\faIcon{terminal}\ \texttt{docker pull}\\Distribution};
-      \node[cbox] (csbom) at (3.5,0.6) {\faIcon{list-alt}\ SBOM\\Supply chain};
+      \node[cbox, font=\fontsize{4.5}{5.5}\selectfont\bfseries] (creg) at (3.0,6) {\faIcon{database}\ Quay.io / Docker Hub};
+      \node[cbox] (cimg) at (0.7,4.2) {\faIcon{cube}\ Container Image\\OCI format};
+      \node[cbox] (ctag) at (5.3,4.2) {\faIcon{tag}\ Tags \& Digests\\Versioning};
+      \node[cbox] (csig) at (0.7,2.4) {\faIcon{lock}\ Sigstore / cosign\\Image signing};
+      \node[cbox] (ccli) at (5.3,2.4) {\faIcon{terminal}\ \texttt{docker pull}\\Distribution};
+      \node[cbox] (csbom) at (3.0,0.6) {\faIcon{list-alt}\ SBOM\\Supply chain};
 
       \draw[->, thick, orchblue!50] (creg) -- (cimg);
       \draw[->, thick, orchblue!50] (creg) -- (ctag);
@@ -51,12 +51,12 @@
                      font=\fontsize{4.5}{5.5}\selectfont, text centered}
       }
 
-      \node[abox, font=\fontsize{4.5}{5.5}\selectfont\bfseries] (areg) at (11.5,6) {\faIcon{database}\ o9e Agent Registry};
-      \node[abox] (apkg) at (9.2,4.2) {\faIcon{robot}\ Agent Package\\Code + config + tools};
-      \node[abox] (aver) at (13.8,4.2) {\faIcon{tag}\ Semantic Versioning\\Conformance badge};
-      \node[abox] (asig) at (9.2,2.4) {\faIcon{lock}\ Signing \& Provenance\\Attestations};
-      \node[abox] (acli) at (13.8,2.4) {\faIcon{terminal}\ \texttt{o9ectl pull}\\Distribution};
-      \node[abox] (asbom) at (11.5,0.6) {\faIcon{list-alt}\ Agent SBOM\\Model + tools + deps};
+      \node[abox, font=\fontsize{4.5}{5.5}\selectfont\bfseries] (areg) at (12.0,6) {\faIcon{database}\ o9e Agent Registry};
+      \node[abox] (apkg) at (9.7,4.2) {\faIcon{robot}\ Agent Package\\Code + config + tools};
+      \node[abox] (aver) at (14.3,4.2) {\faIcon{tag}\ Semantic Versioning\\Conformance badge};
+      \node[abox] (asig) at (9.7,2.4) {\faIcon{lock}\ Signing \& Provenance\\Attestations};
+      \node[abox] (acli) at (14.3,2.4) {\faIcon{terminal}\ \texttt{o9ectl pull}\\Distribution};
+      \node[abox] (asbom) at (12.0,0.6) {\faIcon{list-alt}\ Agent SBOM\\Model + tools + deps};
 
       \draw[->, thick, orchgreen!50] (areg) -- (apkg);
       \draw[->, thick, orchgreen!50] (areg) -- (aver);
