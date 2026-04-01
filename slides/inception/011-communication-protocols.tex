@@ -31,7 +31,7 @@
       \node[bus] (eb) at (4.5,0) {\faIcon{exchange-alt}\ \ Event Bus (typed messages)};
 
       % Schema registry
-      \node[reg] (sr) at (4.5,-1.5) {\faBook\ Schema Registry};
+      \node[reg] (sr) at (4.5,-1.5) {\faIcon{book}\ Schema Registry};
 
       % Connections
       \draw[<->, thick, orchpurple] (a1) -- (a1 |- eb.north);
@@ -47,7 +47,7 @@
   \fontsize{6}{7}\selectfont
   \begin{columns}[T]
     \begin{column}{0.48\textwidth}
-      \textbf{\faEnvelope\ \ Message Contract:}
+      \textbf{\faIcon{envelope}\ \ Message Contract:}
       \begin{itemize}
         \item Typed payloads with JSON Schema validation
         \item Versioned schemas in a central registry
@@ -55,7 +55,7 @@
       \end{itemize}
     \end{column}
     \begin{column}{0.48\textwidth}
-      \textbf{\faBolt\ \ Transport Modes:}
+      \textbf{\faIcon{bolt}\ \ Transport Modes:}
       \begin{itemize}
         \item Synchronous request/response
         \item Async event-driven (pub/sub)

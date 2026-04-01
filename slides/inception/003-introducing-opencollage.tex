@@ -1,6 +1,7 @@
 \section{Introducing OpenCollage}
 
 \begin{frame}{OpenCollage: The Universal Orchestration Layer}
+  \vspace{-0.2cm}
   \scriptsize
   \begin{block}{Core Message}
     \scriptsize
@@ -9,7 +10,7 @@
     to collaborate through shared definitions, protocols, and telemetry.
   \end{block}
 
-  \vspace{0.2cm}
+  \vspace{-0.1cm}
 
   \begin{center}
     \begin{tikzpicture}[scale=0.65, transform shape,
@@ -28,8 +29,8 @@
 
       % Outputs layer
       \node[layer, fill=orchpurple!15, text width=2.2cm] (sw) at (0,3.6) {Software};
-      \node[layer, fill=orchpurple!15, text width=2.2cm] (doc) at (3.5,3.6) {Documents};
-      \node[layer, fill=orchpurple!15, text width=2.2cm] (dp) at (7,3.6) {Data Pipelines};
+      \node[layer, fill=orchpurple!15, text width=2.2cm] (doc) at (4.2,3.6) {Documents};
+      \node[layer, fill=orchpurple!15, text width=2.2cm] (dp) at (8.4,3.6) {Data Pipelines};
 
       % Arrows
       \draw[->, thick, orchblue] (ag) -- (ag |- oc.south);
@@ -42,7 +43,7 @@
     \end{tikzpicture}
   \end{center}
 
-  \vspace{0.1cm}
+  \vspace{-0.1cm}
 
   \begin{itemize}
     \item \textbf{Open definitions}: YAML/JSON pipeline specs---version-controlled, portable, auditable

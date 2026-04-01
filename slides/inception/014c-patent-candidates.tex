@@ -576,7 +576,7 @@
         \draw[arrow] (c2) -- (n3);
 
         %% State store
-        \node[store] (ss) at (2.4,3) {\faDatabase\ State Backend (Redis / S3 / PG)};
+        \node[store] (ss) at (2.4,3) {\faIcon{database}\ State Backend (Redis / S3 / PG)};
         \draw[arrow, orchorange, dashed] (c1) -- node[right, font=\fontsize{5}{6}\selectfont] {save} (c1 |- ss.north);
         \draw[arrow, orchorange, dashed] (c2) -- node[right, font=\fontsize{5}{6}\selectfont] {save} (c2 |- ss.north);
 
