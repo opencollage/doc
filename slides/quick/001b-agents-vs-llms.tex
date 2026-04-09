@@ -1,0 +1,63 @@
+\section{Agents vs LLMs}
+
+\begin{frame}{Why Agents, Not Just LLMs?}
+  \vspace{-0.2cm}
+  \scriptsize
+  \begin{block}{Core Message}
+    \scriptsize
+    LLMs generate text. \textbf{Agents act}---they plan, use tools, maintain state,
+    and collaborate to complete real-world tasks autonomously.
+  \end{block}
+
+  \vspace{-0.1cm}
+
+  \begin{center}
+    \begin{tikzpicture}[scale=0.7, transform shape,
+        box/.style={rectangle, draw, thick, rounded corners,
+                    text width=4.5cm, text centered, minimum height=3.2cm, font=\tiny\bfseries}]
+
+      \node[box, fill=orchgray!12] (llm) at (0,0) {
+        \faIcon{brain}\ \ \textbf{LLM}\\[6pt]
+        \normalfont\tiny
+        Single prompt \faIcon{arrow-right}\ response\\[2pt]
+        No memory between calls\\[2pt]
+        No tool access\\[2pt]
+        No autonomous planning\\[2pt]
+        \textit{``What should I do?''}
+      };
+
+      \node[box, fill=orchgreen!15] (agent) at (8,0) {
+        \faIcon{robot}\ \ \textbf{Agent}\\[6pt]
+        \normalfont\tiny
+        Multi-step reasoning \& action\\[2pt]
+        Persistent state \& memory\\[2pt]
+        Tool use (APIs, DBs, code)\\[2pt]
+        Autonomous goal pursuit\\[2pt]
+        \textit{``I will get it done.''}
+      };
+
+      \draw[->, very thick, orchblue, dashed] (llm) -- node[above, font=\tiny\bfseries] {LLM is the engine} node[below, font=\tiny\bfseries] {Agent is the driver} (agent);
+    \end{tikzpicture}
+  \end{center}
+
+  \vspace{-0.1cm}
+
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \textbf{\faIcon{question-circle}\ \ Why focus on agents?}
+      \begin{itemize}
+        \item Real tasks require \textbf{multi-step workflows}
+        \item Different tasks need \textbf{different tools}
+        \item Complex problems need \textbf{collaboration} between specialized agents
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \textbf{\faIcon{layer-group}\ \ What OpenCollage adds}
+      \begin{itemize}
+        \item \textbf{Orchestrate} agents across frameworks
+        \item \textbf{Standardize} how agents hand off work
+        \item \textbf{Observe} the full pipeline, not just one call
+      \end{itemize}
+    \end{column}
+  \end{columns}
+\end{frame}
