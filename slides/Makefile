@@ -3,22 +3,22 @@ SUBDIRS+=quick
 
 all:
 	@for dir in $(SUBDIRS); do \
-		make -C $$dir; \
+		make -C $$dir || exit 1; \
 	done
 
 clean:
 	@for dir in $(SUBDIRS); do \
-		make -C $$dir clean; \
+		make -C $$dir clean || exit 1; \
 	done
 
 clobber:
 	@for dir in $(SUBDIRS); do \
-		make -C $$dir clobber; \
+		make -C $$dir clobber || exit 1; \
 	done
 
 test:
 	@for dir in $(SUBDIRS); do \
-		make -C $$dir test; \
+		make -C $$dir test || exit 1; \
 	done
 
 .PHONY: all clean clobber test
