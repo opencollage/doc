@@ -1,0 +1,57 @@
+\section{Defensive Patents}
+
+\begin{frame}{\fontsize{10}{12}\selectfont Defensive Patent Candidates: Protecting Open Agent Orchestration}
+  \vspace{-0.2cm}
+  \begin{block}{\scriptsize Red Hat Patent Promise}
+    \scriptsize
+    Red Hat's patents exist to \textbf{defend open source}, not to restrict it.
+    By patenting OpenCollage's core innovations, we prevent proprietary vendors
+    from locking down AI agent orchestration.
+  \end{block}
+
+  \vspace{-0.2cm}
+
+  \begin{center}
+    \hspace*{-0.25cm}
+    \begin{tikzpicture}[scale=0.7, transform shape,
+        cand/.style={rectangle, draw, thick, rounded corners,
+                     text width=2.75cm, text centered, minimum height=1.8cm, font=\tiny\bfseries}]
+
+      \node[cand, fill=orchblue!15] (c1) at (-0.7,0) {
+        \faIcon{plug}\\[3pt] Candidate 1\\[3pt]
+        \normalfont\tiny Framework-Agnostic\\Adapter Contract
+      };
+      \node[cand, fill=orchgreen!15] (c2) at (2.55,0) {
+        \faIcon{database}\\[3pt] Candidate 2\\[3pt]
+        \normalfont\tiny Agent Registry with\\Conformance Trust
+      };
+      \node[cand, fill=orchorange!15] (c3) at (5.8,0) {
+        \faIcon{project-diagram}\\[3pt] Candidate 3\\[3pt]
+        \normalfont\tiny Declarative Agent\\Pipeline Definitions
+      };
+      \node[cand, fill=orchpurple!15] (c4) at (9.05,0) {
+        \faIcon{shield-alt}\\[3pt] Candidate 4\\[3pt]
+        \normalfont\tiny Agent Supply\\Chain Security
+      };
+      \node[cand, fill=orchred!15] (c5) at (12.3,0) {
+        \faIcon{undo}\\[3pt] Candidate 5\\[3pt]
+        \normalfont\tiny Cross-Framework\\State \& Replay
+      };
+
+    \end{tikzpicture}
+  \end{center}
+
+  \vspace{0.1cm}
+
+  \fontsize{6}{7}\selectfont
+  \begin{alertblock}{\fontsize{6}{7}\selectfont Why Now?}
+    \fontsize{6}{7}\selectfont
+    \begin{itemize}
+      \setlength{\itemsep}{0pt}
+      \item The AI agent orchestration space is \textbf{largely unpatented}---no Red Hat patents exist in this area
+      \item Proprietary vendors (LangChain, CrewAI, Microsoft/AutoGen) could patent their approaches, creating lock-in
+      \item Filing now establishes \textbf{priority dates} before the space matures
+      \item All filings align with Red Hat's Patent Promise: patents protect open-source implementations
+    \end{itemize}
+  \end{alertblock}
+\end{frame}
